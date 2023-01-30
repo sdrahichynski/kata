@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background: #ffffff;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+}
+
+header, footer, nav {
+  flex: 0 0 auto;
+}
+
+.content {
+  padding: 120px 20px 20px 20px;
+  flex: 1 1 auto;
+}
