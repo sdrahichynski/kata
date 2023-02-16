@@ -5,9 +5,11 @@ import Logo from "./logo.png";
 // @ts-ignore
 import styles from "./Primary.module.scss";
 
-interface PrimaryProps extends React.PropsWithChildren {}
+interface PrimaryProps extends React.PropsWithChildren {
+  loading?: boolean,
+}
 
-const Primary: React.FC<PrimaryProps> = ({ children }) => {
+const Primary: React.FC<PrimaryProps> = ({ loading = false, children }) => {
   return <div className={styles.wrapper}>
     <div className={styles.header}>
       <div className={styles.headerLogoContainer}>
@@ -20,7 +22,7 @@ const Primary: React.FC<PrimaryProps> = ({ children }) => {
     </div>
 
     <div className={styles.content}>
-      { children }
+      { loading ? "........LOADING.........." : children}
     </div>
 
     <div className={styles.footer}>
