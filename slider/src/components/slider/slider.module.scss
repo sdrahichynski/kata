@@ -1,0 +1,30 @@
+.wrapper {
+  height: 600px;
+  border: 1px solid darkred;
+  overflow: hidden;
+  position: relative;
+}
+
+.rails {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  transform: translateX(0);
+  transition: transform .3s ease-in-out;
+
+  &:before {
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
+
+.slideWrapper {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+  border: 1px dashed darkgreen;
+  box-sizing: border-box;
+}
