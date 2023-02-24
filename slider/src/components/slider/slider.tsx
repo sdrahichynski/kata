@@ -51,6 +51,8 @@ const Slider: React.FC<SliderProps> = () => {
             -(index.curr + 1) * 100
           }%)`;
         }, 0);
+
+        return;
       }
 
       if (index.prev === slides.length - 1 && index.curr === 0) {
@@ -65,7 +67,13 @@ const Slider: React.FC<SliderProps> = () => {
             -(index.curr + 1) * 100
           }%)`;
         }, 0);
+
+        return;
       }
+
+      trackRef.current.style.transform = `translateX(${
+        -(index.curr + 1) * 100
+      }%)`;
     }
   }, [index]);
 
@@ -74,7 +82,6 @@ const Slider: React.FC<SliderProps> = () => {
       <div className={styles.wrapper}>
         <div
           className={styles.rails}
-          style={{ transform: `translateX(${-(index.curr + 1) * 100}%)` }}
           ref={trackRef}
         >
           {SLIDES.map(
