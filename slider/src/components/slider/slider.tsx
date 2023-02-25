@@ -80,6 +80,9 @@ const Slider: React.FC<SliderProps> = () => {
   return (
     <>
       <div className={styles.wrapper}>
+        <button className={styles.prev} onClick={() => handleBackward()}>{"<"}</button>
+        <button className={styles.next} onClick={() => handleForward()}>{">"}</button>
+
         <div
           className={styles.rails}
           ref={trackRef}
@@ -98,9 +101,6 @@ const Slider: React.FC<SliderProps> = () => {
           )}
         </div>
       </div>
-
-      <button onClick={() => handleBackward()}> prev</button>
-      <button onClick={() => handleForward()}> next</button>
     </>
   );
 };

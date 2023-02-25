@@ -1,8 +1,25 @@
 .wrapper {
-  height: 600px;
+  height: 100%;
+  width: 100%;
   border: 1px solid darkred;
   overflow: hidden;
   position: relative;
+}
+
+.next,
+.prev {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  z-index: 1;
+}
+
+.next {
+  transform: translateX(3px);
+}
+
+.prev {
+  transform: translateX(calc(-100% - 3px));
 }
 
 .rails {
