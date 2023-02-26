@@ -51,6 +51,7 @@ const Slider: React.FC<SliderProps> = () => {
   React.useLayoutEffect(() => {
     const track = trackRef.current;
     const lastAction = lastActionRef.current;
+
     if (!track) return;
 
     const { transition } = getComputedStyle(track);
