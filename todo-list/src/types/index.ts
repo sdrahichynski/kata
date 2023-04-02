@@ -1,5 +1,10 @@
 export interface ToDo {
-  id: string | number;
+  id: string;
   title: string;
   content: string;
+}
+
+export interface User {
+  id: string;
+  userName: string;
 }

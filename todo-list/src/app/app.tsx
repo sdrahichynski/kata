@@ -5,9 +5,11 @@ import * as LC from "./components";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <React.Suspense fallback={null}>
-        <LC.AppRouter />
-      </React.Suspense>
+      <LC.AuthProvider>
+        <React.Suspense fallback={null}>
+          <LC.AppRouter />
+        </React.Suspense>
+      </LC.AuthProvider>
     </BrowserRouter>
   );
 };

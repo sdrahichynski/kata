@@ -1,20 +1,21 @@
 import * as React from "react";
 import * as T from "../../../types";
 import { Link } from "react-router-dom";
+import * as H from "hooks";
 
 const LIST: T.ToDo[] = [
   {
-    id: 1,
+    id: "1",
     title: "Develop resource",
     content: "Provide resource to handle CRUD",
   },
   {
-    id: 2,
+    id: "2",
     title: "AUTH",
     content: "Provide Auth",
   },
   {
-    id: 3,
+    id: "3",
     title: "Mock API",
     content: "Provide Auth",
   },
@@ -23,8 +24,11 @@ const LIST: T.ToDo[] = [
 interface ListProps {}
 
 const List: React.FC<ListProps> = () => {
+  const [auth] = H.useAuth();
+
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
+      <h3>User: {auth.user?.userName}</h3>
       {LIST.map((todo) => (
         <div
           style={{
