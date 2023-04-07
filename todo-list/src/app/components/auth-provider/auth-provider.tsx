@@ -18,7 +18,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setIsLoading(false);
       });
   }, []);
-
+  console.log(user);
   return (
     <AuthContext.Provider
       value={{

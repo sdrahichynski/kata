@@ -10,6 +10,7 @@ const Registration: React.FC<LoginProps> = () => {
   const handleSubmit: React.FormEventHandler = (e) => {
     e.preventDefault();
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
