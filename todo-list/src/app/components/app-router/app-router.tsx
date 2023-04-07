@@ -1,14 +1,28 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import * as P from "pages";
+import { useAuth } from "../../../hooks";
+import * as LC from "./components";
 
 interface AppRouterProps {}
 
 const AppRouter: React.FC<AppRouterProps> = () => {
+  const { isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div>"LOADING"</div>;
+  }
+
   return (
     <Routes>
-      <Route index element={<P.ToDo />} />
-      <Route path={"todos/*"} element={<P.ToDo />} />
+      {/* public routes */}
+      <Route path="/login" element={<P.Login />} />
+      <Route path="/registration" element={<P.Registration />} />
+
+      <Route element={<LC.AuthRoutes />}>
+        <Route index element={<P.ToDo />} />
+        <Route path={"todos/*"} element={<P.ToDo />} />
+      </Route>
     </Routes>
   );
 };

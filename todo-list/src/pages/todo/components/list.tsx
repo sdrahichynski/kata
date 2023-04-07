@@ -24,11 +24,11 @@ const LIST: T.ToDo[] = [
 interface ListProps {}
 
 const List: React.FC<ListProps> = () => {
-  const [auth] = H.useAuth();
+  const { user } = H.useAuth();
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h3>User: {auth.user?.userName}</h3>
+      <h3>User: {user?.userName}</h3>
       {LIST.map((todo) => (
         <div
           style={{

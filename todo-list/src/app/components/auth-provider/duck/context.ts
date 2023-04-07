@@ -1,6 +1,6 @@
 import React from "react";
-import { Auth, SetAuth } from "./types";
+import { Auth } from "./types";
 
-const AuthContext = React.createContext<[Auth, SetAuth]>(null as any);
+const AuthContext = React.createContext<Auth>(null as any);
 
 export default AuthContext;
