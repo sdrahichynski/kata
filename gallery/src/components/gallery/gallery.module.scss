@@ -24,28 +24,3 @@
     z-index: 99;
   }
 }
-
-.slideWrapper {
-  width: 450px;
-  height: 600px;
-  border-radius: 8px;
-  position: absolute;
-  cursor: pointer;
-  transition: transform .5s ease-out, opacity .75s ease;
-
-  top: calc(50% - 600px / 2);
-
-  &:nth-child(2n) {
-    right: calc(50% + 30px);
-  }
-
-  &:nth-child(2n + 1) {
-    left: calc(50% + 30px);
-  }
-
-
-  &:active {
-    //transform: translateZ(100px);
-    //opacity: 0;
-  }
-}

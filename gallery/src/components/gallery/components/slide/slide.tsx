@@ -1,7 +1,8 @@
 import * as React from "react";
 import styles from "./slide.module.scss";
+import cx from "classnames";
 
-interface SlideProps
+export interface SlideProps
   extends React.PropsWithChildren,
     React.HTMLAttributes<HTMLDivElement> {
   type?: "left" | "right" | "center";
@@ -14,8 +15,8 @@ const Slide: React.FC<SlideProps> = ({
   ...rest
 }) => {
   return (
-    <div className={styles.slide + " " + className} {...rest}>
-      {children}
+    <div className={cx(styles.slideWrapper, type)} {...rest}>
+      <div className={cx(styles.slide, className)}>{children}</div>
     </div>
   );
 };

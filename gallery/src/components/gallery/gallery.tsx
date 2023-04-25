@@ -4,7 +4,9 @@ import { utils } from "./duck";
 import * as L from "./components";
 
 interface GalleryProps {
-  children: ReturnType<typeof L.Slide> | ReturnType<typeof L.Slide>[];
+  children:
+    | React.ReactElement<L.SlideProps>
+    | React.ReactElement<L.SlideProps>[]; // doesn't work?
 }
 
 interface GalleryStatic {
@@ -18,7 +20,6 @@ const Gallery: React.FC<GalleryProps> & GalleryStatic = ({ children }) => {
 
   React.useEffect(() => {
     const wheelHandler = (e: WheelEvent) => {
-      console.log(document.documentElement.scrollTop);
       setScroll((scroll) =>
         utils.calculateScroll(
           scroll,
@@ -36,17 +37,15 @@ const Gallery: React.FC<GalleryProps> & GalleryStatic = ({ children }) => {
     <section className={styles.wrapper}>
       <span style={{ color: "white" }}>{scroll}</span>
 
-      {React.Children.map(children, (child, i) => (
-        <div
-          className={styles.slideWrapper}
-          style={{
+      {React.Children.map(children, (child, i) => {
+        return React.cloneElement(child, {
+          style: {
+            ...child.props.style,
             ...utils.getSlideStyle(i, scroll),
-            // backgroundColor: color,
-          }}
-        >
-          {child}
-        </div>
-      ))}
+            zIndex: Array.isArray(children) ? children.length - i : 1,
+          },
+        });
+      })}
     </section>
   );
 };

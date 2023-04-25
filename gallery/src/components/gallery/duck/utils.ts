@@ -9,8 +9,8 @@ export const getSlideStyle = (
   const opacity =
     transform >= SLIDE_STEP || transform < -SLIDE_STEP
       ? 0
-      : transform < -SLIDE_STEP / 2
-      ? 0.5
+      : transform < -SLIDE_STEP / 3
+      ? 0.2
       : 1;
 
   return {
