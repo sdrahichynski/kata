@@ -1,0 +1,15 @@
+.wrapper {
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.column {
+  display: inline-block;
+  height: 100%;
+  width: 280px;
+  padding: 12px;
+  vertical-align: top;
+  box-sizing: border-box;
+}
