@@ -1,3 +1,4 @@
+import { FormEventHandler } from "react";
 import * as React from "react";
 import * as T from "types";
 import Card from "../card";
@@ -9,7 +10,29 @@ interface TodosListProps {
 }
 
 const TodosList: React.FC<TodosListProps> = ({ title, todos: propsTodos }) => {
-  const [todos, setTodos] = React.useState(propsTodos);
+  const [todos, setTodos] = React.useState(
+    propsTodos.map((item, index) => ({ ...item, index }))
+  );
+  const [addTodo, setAddTodo] = React.useState(false);
+
+  const handleAdd = () => setAddTodo(true);
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    // @ts-ignore
+    const title = e.currentTarget.title?.val;
+    ue;
+
+    setTodos((prevTodos) => [
+      ...todos,
+      {
+        id: Date.now().toString(),
+        title: title || "",
+        index: prevTodos.length,
+      },
+    ]);
+
+    setAddTodo(false);
+  };
 
   return (
     <div className={style.inner}>
@@ -23,26 +46,24 @@ const TodosList: React.FC<TodosListProps> = ({ title, todos: propsTodos }) => {
       {!!todos.length && (
         <div className={style.body}>
           {todos.map(({ title, id }) => (
-            <Card title={title} id={id} />
+            <Card key={id} title={title} id={id} />
           ))}
         </div>
       )}
 
       <footer className={style.footer}>
-        <button
-          onClick={() =>
-            setTodos((prevTodos) => [
-              ...prevTodos,
-              {
-                id: "temp id",
-                title: "123",
-                location: { col: 1, row: 5 },
-              },
-            ])
-          }
-        >
-          + Add card
-        </button>
+        {addTodo ? (
+          <form onSubmit={handleSubmit}>
+            <label>
+              Title:
+              <br />
+              <input name="title" type="text" />
+            </label>
+            <button>Add</button>
+          </form>
+        ) : (
+          <button onClick={handleAdd}>+ Add card</button>
+        )}
       </footer>
     </div>
   );

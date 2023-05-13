@@ -2,10 +2,6 @@ export interface ToDo {
   id: string;
   title: string;
   content?: string;
-  location: {
-    col: number;
-    row: number;
-  };
 }
 
 export interface ToDoColumn {
