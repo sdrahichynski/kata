@@ -1,0 +1,20 @@
+.wrapper {
+  width: 200px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  color: #435688;
+  border: 3px solid rgba(255, 255, 255, .8);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, .6);
+  transition: background-color .2s, border-color .2s;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover {
+    border-color: #fff;
+    background-color: #fff;
+  }
+}
