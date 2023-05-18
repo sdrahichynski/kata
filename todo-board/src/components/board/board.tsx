@@ -23,7 +23,7 @@ const Board: React.FC<BoardProps> = () => {
   return (
     <div className={styles.wrapper}>
       {CARDS.map(({ id }) => (
-        <LC.Card title={id} />
+        <LC.DraggableCard title={id} key={id} />
       ))}
     </div>
   );
