@@ -1,0 +1,23 @@
+
+.button {
+  display: block;
+  margin: 20px auto;
+  padding: 8px 20px;
+  border: 2px solid #111422;
+  color: #111422;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  transition: background-color .2s;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: #eaecf1;
+  }
+
+  &:active {
+    background-color: #dbdfe5;
+  }
+}
