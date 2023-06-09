@@ -3,10 +3,76 @@
   border-radius: 12px;
   border: 1px solid #1a395c;
   background-color: white;
-  box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  width: 320px;
 
   h4 {
-    margin-top: 0;
-    margin-bottom: 12px;
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.done {
+    border-color: forestgreen;
+    h4 {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.remove,
+.update {
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove {
+  color: indianred;
+  background-color: rgba(205, 92, 92, .1);
+  font-weight: 500;
+  font-size: 20px;
+  transition: background-color .2s;
+
+  &:hover {
+    background-color: rgba(205, 92, 92, .2);
+  }
+
+  &:active {
+    background-color: rgba(205, 92, 92, .15);
+  }
+}
+
+.update {
+  color: forestgreen;
+  background-color: rgba(34, 139, 34, .1);
+  font-size: 20px;
+  transition: background-color .2s;
+
+
+  &:hover {
+    background-color: rgba(34, 139, 34, .2);
+  }
+
+  &:active {
+    background-color: rgba(34, 139, 34, .15);
   }
 }

@@ -3,18 +3,21 @@ import styles from "./todo.module.scss"
 
 interface TodoProps {
   title: string;
-  content?: string;
+  done: boolean;
+  onRemove: () => void;
+  onChange: (done: boolean) => void;
 }
 
-const Todo: React.FC<TodoProps> = ({ title, content }) => {
+const Todo: React.FC<TodoProps> = ({ title, done, onRemove, onChange }) => {
   return (
-    <article className={styles.wrapper}>
-      <header>
-        <h4>{title}</h4>
-      </header>
+    <div className={styles.wrapper + ` ${done ? styles.done : ""}`}>
+      <h4>{title}</h4>
 
-      {content}
-    </article>
+      <div className={styles.actions}>
+        <button className={styles.update} onClick={() => onChange(!done)}>✓</button>
+        <button className={styles.remove} onClick={() => onRemove()}>X</button>
+      </div>
+    </div>
   );
 };
 
