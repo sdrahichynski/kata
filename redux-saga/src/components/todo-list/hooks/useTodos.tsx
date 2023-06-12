@@ -1,49 +1,27 @@
 import * as React from "react";
 import * as H from "hooks";
+import { fetchTodos } from "../redux";
 import * as LA from "../redux";
 import { Todo } from "../types";
 
-const convertJSONPH = (
-  todos: {
-    userId: number | string;
-    id: number | string;
-    title: string;
-    completed: boolean;
-  }[]
-): Todo[] => {
-  return todos.slice(0, 10).map(({ id, title, completed }) => ({
-    id,
-    title,
-    done: completed,
-  }));
-};
-
-const getTodos = async () => {
-  return fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-    .then((data) => data.json())
-    .then(convertJSONPH);
-};
-
 const useTodos = () => {
-  const [loading, setLoading] = React.useState(false);
-  const todos = H.useAppSelector((state) => state.todoList);
+  const { todos, status, error } = H.useAppSelector((state) => state.todoList);
   const dispatch = H.useAppDispatch();
 
   React.useEffect(() => {
-    if (!todos.length) {
-      setLoading(true);
+    const controller = new AbortController();
 
-      getTodos().then((response) => {
-        // setTodos(response);
-        // console.log(response);
-        dispatch(LA.set(response));
-        setLoading(false);
-      });
+    if (status === "idle") {
+      dispatch(fetchTodos(controller.signal));
     }
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return {
-    loading,
+    loading: status === "loading",
     todos: todos || ([] as Todo[]),
     remove: (id: Todo["id"]) => dispatch(LA.remove(id)),
     update: (id: Todo["id"], fields: Partial<Todo>) =>
