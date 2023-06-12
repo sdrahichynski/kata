@@ -1,4 +1,6 @@
 import * as React from "react";
+import * as H from "hooks";
+import * as LA from "../redux";
 import { Todo } from "../types";
 
 const convertJSONPH = (
@@ -17,21 +19,24 @@ const convertJSONPH = (
 };
 
 const getTodos = async () => {
-  return fetch("https://jsonplaceholder.typicode.com/todos")
+  return fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
     .then((data) => data.json())
     .then(convertJSONPH);
 };
 
 const useTodos = () => {
   const [loading, setLoading] = React.useState(false);
-  const [todos, setTodos] = React.useState<Todo[] | null>(null);
+  const todos = H.useAppSelector((state) => state.todoList);
+  const dispatch = H.useAppDispatch();
 
   React.useEffect(() => {
-    if (!todos) {
+    if (!todos.length) {
       setLoading(true);
 
       getTodos().then((response) => {
-        setTodos(response);
+        // setTodos(response);
+        // console.log(response);
+        dispatch(LA.set(response));
         setLoading(false);
       });
     }
@@ -40,21 +45,10 @@ const useTodos = () => {
   return {
     loading,
     todos: todos || ([] as Todo[]),
-    remove: (id: Todo["id"]) => {
-      setTodos((todos) => todos && todos.filter((todo) => todo.id !== id));
-    },
-    update: (id: Todo["id"], fields: Partial<Todo>) => {
-      setTodos(
-        (todos) =>
-          todos &&
-          todos.map((todo) => (todo.id === id ? { ...todo, ...fields } : todo))
-      );
-    },
-    add: (title: string) =>
-      setTodos((todos) => [
-        ...(todos || []),
-        { title, done: false, id: (todos?.length || 0) + 1 },
-      ]),
+    remove: (id: Todo["id"]) => dispatch(LA.remove(id)),
+    update: (id: Todo["id"], fields: Partial<Todo>) =>
+      dispatch(LA.update({ id, ...fields })),
+    add: (title: string) => dispatch(LA.create(title)),
   };
 };
 
