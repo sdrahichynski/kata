@@ -1,0 +1,30 @@
+.wrapper {
+  border: 3px solid;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+
+
+  h5 {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &.green {
+    border-color: darkseagreen;
+  }
+
+  &.red {
+    border-color: palevioletred;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+}
