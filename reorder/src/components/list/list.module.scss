@@ -1,0 +1,22 @@
+.wrapper {
+  padding: 0;
+  margin: 20px auto;
+  list-style: none;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listItem {
+  border: 2px solid #085c92;
+  background-color: #4499BB;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 8px 20px;
+}
