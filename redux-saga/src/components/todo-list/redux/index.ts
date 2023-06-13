@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import type { Todo } from "../types";
+import * as API from "api";
 
 interface TodoState {
   todos: Todo[];
@@ -11,7 +12,6 @@ export const todoSlice = createSlice({
   name: "todoList",
 
   initialState: {
-    // Multiple possible status enum values
     todos: [],
     status: "idle",
     error: null,
@@ -62,48 +62,24 @@ export const todoSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchTodos.pending, (state, action) => {
+      .addCase(fetchTodos.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
         state.status = "succeeded";
-        // Add any fetched todos to the array
         state.todos = state.todos.concat(action.payload);
+      })
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
-    // .addCase(getTodos.rejected, (state, action) => {
-    //   state.status = 'failed'
-    //   state.error = action.error.message
-    // })
-    // .addCase(getTodos.fulfilled, (state, action) => {
-    //   // @ts-ignore
-    //   state.todos.push(action.payload)
-    // })
   },
 });
 
-const convertJSONPH = (
-  todos: {
-    userId: number | string;
-    id: number | string;
-    title: string;
-    completed: boolean;
-  }[]
-): Todo[] => {
-  return todos.slice(0, 10).map(({ id, title, completed }) => ({
-    id,
-    title,
-    done: completed,
-  }));
-};
-
 const fetchTodos = createAsyncThunk(
   "todos/fetchTodos",
-  async (signal: AbortSignal) => {
-    return fetch("https://jsonplaceholder.typicode.com/todos?_limit=10", {
-      signal,
-    })
-      .then((data) => data.json())
-      .then(convertJSONPH);
+  async (signal?: AbortSignal) => {
+    return API.fetchTodos(signal);
   }
 );
 

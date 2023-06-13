@@ -9,13 +9,13 @@ interface TodoListProps {
 const TodoList: React.FC<TodoListProps> = () => {
   const { todos, loading, remove, update, add } = LH.useTodos();
 
-  if (loading) return <div className={styles.wrapper}>... loading ...</div>
+  if (loading) return <div className={styles.wrapper}>... loading ...</div>;
 
-  return <div className={styles.wrapper}>
-    <LC.AddTodo onAdd={(title) => add(title)} />
+  return (
+    <div className={styles.wrapper}>
+      <LC.AddTodo onAdd={(title) => add(title)} />
 
-    {
-      todos.map(({id, title, done}) => (
+      {todos.map(({ id, title, done }) => (
         <LC.Todo
           title={`${id}) ${title}`}
           done={done}
@@ -27,9 +27,9 @@ const TodoList: React.FC<TodoListProps> = () => {
             remove(id);
           }}
         />
-      ))
-    }
-  </div>;
+      ))}
+    </div>
+  );
 };
 
 export default TodoList;
