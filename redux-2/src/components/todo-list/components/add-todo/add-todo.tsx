@@ -1,22 +1,25 @@
 import * as React from "react";
 import styles from "./add-todo.module.scss";
 
-interface AddTodoProps {}
+interface AddTodoProps {
+  onSubmit(title: string): void;
+}
 
 const validateInput = (input: string): boolean => {
   return input.length >= 2;
 };
 
-const AddTodo: React.FC<AddTodoProps> = () => {
+const AddTodo: React.FC<AddTodoProps> = ({ onSubmit }) => {
   const [input, setInput] = React.useState("");
   const isValid = validateInput(input);
 
-  const handleSubmit = () => {
+  const handleSubmit: React.FormEventHandler = (e) => {
+    e.preventDefault();
+
     if (validateInput(input)) {
-      console.log(input);
+      onSubmit(input);
       setInput("");
     }
-    console.log("invalid input");
   };
 
   return (

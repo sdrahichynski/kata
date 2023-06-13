@@ -1,5 +1,5 @@
 .wrapper {
-  border: 3px solid orangered;
+  border: 3px solid;
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -14,4 +14,17 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+  &.green {
+    border-color: darkseagreen;
+  }
+
+  &.red {
+    border-color: palevioletred;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
 }

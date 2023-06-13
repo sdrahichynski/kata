@@ -1,31 +1,25 @@
 import * as React from "react";
 import * as LC from "./components";
+import { useTodos } from "./hooks";
 import styles from "./todo-list.module.scss";
 
 interface TodoListProps {}
 
-const TODOS = [
-  {
-    id: 1,
-    title: "test 1test 1test 1test 1test 1test 1test 1test 1test 1test 1",
-    done: false,
-  },
-  {
-    id: 2,
-    title: "test 2e",
-    done: true,
-  },
-];
-
 const TodoList: React.FC<TodoListProps> = () => {
-  const todos = TODOS;
+  const { todos, addTodo, update, remove } = useTodos();
 
   return (
     <div className={styles.wrapper}>
-      <LC.AddTodo />
+      <LC.AddTodo onSubmit={addTodo} />
 
       {todos.map(({ title, done, id }) => (
-        <LC.Todo key={id} title={title} done={done} />
+        <LC.Todo
+          key={id}
+          title={title}
+          done={done}
+          onChange={(fields) => update(id, fields)}
+          onRemove={() => remove(id)}
+        />
       ))}
     </div>
   );

@@ -5,3 +5,5 @@ export interface Todo {
   title: string;
   done: boolean;
 }
+
+export type FetchStatus = "idle" | "loading" | "success" | "error";
