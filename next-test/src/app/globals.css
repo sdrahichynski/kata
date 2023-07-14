@@ -19,9 +19,13 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+          to bottom,
+          transparent,
+          rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb));
+}
+
+/* TEST */
+header, footer, main {
+  border: 1px solid red;
 }
