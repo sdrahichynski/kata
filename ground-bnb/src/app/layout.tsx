@@ -20,6 +20,8 @@ export default function RootLayout({
         <C.Navbar />
 
         {children}
+
+        <C.RegisterModal />
       </body>
     </html>
   );

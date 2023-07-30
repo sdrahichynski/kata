@@ -23,7 +23,7 @@ const UserMenu: React.FC<UserMenuProps> = () => {
         <LC.Avatar />
       </button>
 
-      {isOpen && <LC.Modal onClose={() => setIsOpen(false)} />}
+      {isOpen && <LC.Menu onClose={() => setIsOpen(false)} />}
     </div>
   );
 };

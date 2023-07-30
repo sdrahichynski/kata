@@ -1,2 +1,2 @@
 export { default as Avatar } from "./avatar";
-export { default as Modal } from "./modal";
+export { default as Menu } from "./menu";

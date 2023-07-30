@@ -4,7 +4,7 @@ interface ModalProps {
   onClose(): void;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
+const Menu: React.FC<ModalProps> = ({ onClose }) => {
   const handleLogIn = () => {
     console.log("login");
     onClose();
@@ -40,4 +40,4 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
   );
 };
 
-export default Modal;
+export default Menu;
