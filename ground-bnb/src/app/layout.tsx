@@ -1,10 +1,11 @@
 import "./globals.css";
 import { Nunito } from "next/font/google";
+import * as C from "@/components";
 
 const mainFont = Nunito({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Ground Bnb",
+  title: "GBNB",
   description: "Ground Bnb",
 };
 
@@ -15,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={mainFont.className}>{children}</body>
+      <body className={mainFont.className}>
+        <C.Navbar />
+
+        {children}
+      </body>
     </html>
   );
 }
