@@ -21,8 +21,8 @@ const RegisterModal: React.FC<RegisterModalProps> = () => {
         console.log("SUBMIT");
       }}
       submitLabel={"Submit"}
+      header={<h1>Register Modal</h1>}
     >
-      <h1>Register Modal</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem esse
         molestiae repellendus sequi soluta temporibus veniam! Accusamus amet

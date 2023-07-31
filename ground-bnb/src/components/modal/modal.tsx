@@ -73,19 +73,19 @@ const Modal: React.FC<ModalProps> = ({
       className={`flex fixed h-full w-full bg-black bg-opacity-50 z-20 top-0 left-0`}
     >
       <div
-        className={`mx-auto my-auto bg-white rounded-xl w-[480px] relative p-2`}
+        className={`mx-auto my-auto bg-white rounded-xl w-[480px] relative p-4`}
       >
-        <header className="px-4 pb-2 min-h-[18px]">
-          {header && { header }}
+        <header className="pb-2 min-h-[18px] text-xl font-bold">
+          {header}
 
           <button className="absolute right-1 top-1 p-1" onClick={handleClose}>
             <IoClose size={12} />
           </button>
         </header>
 
-        {children && <div className="px-4 py-2">{children}</div>}
+        {children && <div className="py-2">{children}</div>}
 
-        {footer && <footer className="p-4 pt-2">{footer}</footer>}
+        {footer && <footer className="py-4 pt-2">{footer}</footer>}
 
         <div className="flex flex-row gap-2 pt-2 items-center">
           {handleCancel && (
