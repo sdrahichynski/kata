@@ -7,9 +7,7 @@ import * as C from "@/components";
 interface ModalProps {
   isOpen?: boolean;
 
-  onOpen?(): void;
-
-  onClose?(): void;
+  close(): void;
 
   onSubmit?(): void;
 
@@ -25,9 +23,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({
-  isOpen: initialIsOpen = true,
-  onClose,
-  onOpen,
+  isOpen = false,
+  close,
   onSubmit,
   onCancel,
   submitLabel = "Ok",
@@ -36,33 +33,9 @@ const Modal: React.FC<ModalProps> = ({
   footer,
   children,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(initialIsOpen);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleSubmit =
-    onSubmit &&
-    (() => {
-      setIsOpen(false);
-      onSubmit();
-    });
-
-  const handleCancel =
-    onCancel &&
-    (() => {
-      setIsOpen(false);
-      onCancel();
-    });
-
-  React.useEffect(() => {
-    if (!isOpen) {
-      onClose?.();
-    } else {
-      onOpen?.();
-    }
-  }, [isOpen, onClose, onOpen]);
+  const handleClose = close;
+  const handleCancel = onCancel;
+  const handleSubmit = onSubmit;
 
   if (!isOpen) {
     return null;
@@ -73,9 +46,9 @@ const Modal: React.FC<ModalProps> = ({
       className={`flex fixed h-full w-full bg-black bg-opacity-50 z-20 top-0 left-0`}
     >
       <div
-        className={`mx-auto my-auto bg-white rounded-xl w-[480px] relative p-4`}
+        className={`relative p-4 mx-auto my-auto bg-white sm:rounded-xl w-full h-full sm:w-[480px] sm:h-auto`}
       >
-        <header className="pb-2 min-h-[18px] text-xl font-bold">
+        <header className="pb-2 min-h-[18px] text-xl font-bold text-center px-4">
           {header}
 
           <button className="absolute right-1 top-1 p-1" onClick={handleClose}>

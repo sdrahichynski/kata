@@ -3,7 +3,6 @@
 import * as React from "react";
 import { IoMenuOutline } from "react-icons/io5";
 import * as LC from "./components";
-
 interface UserMenuProps {}
 
 const UserMenu: React.FC<UserMenuProps> = () => {

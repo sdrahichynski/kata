@@ -1,17 +1,20 @@
 import * as React from "react";
+import * as H from "@/hooks";
 
 interface ModalProps {
   onClose(): void;
 }
 
 const Menu: React.FC<ModalProps> = ({ onClose }) => {
+  const registerModal = H.useRegisterModal();
+
   const handleLogIn = () => {
     console.log("login");
     onClose();
   };
 
   const handleSignIn = () => {
-    console.log("sign in");
+    registerModal.open();
     onClose();
   };
 
