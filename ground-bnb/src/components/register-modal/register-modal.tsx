@@ -3,7 +3,10 @@
 import * as C from "@/components";
 import axios from "axios";
 import * as H from "@/hooks";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
 import * as yup from "yup";
+import { toast } from "react-hot-toast";
 
 import * as React from "react";
 
@@ -29,6 +32,7 @@ const RegisterModal: React.FC<RegisterModalProps> = () => {
     message: string;
   } | null>(null);
 
+  // @ts-ignore
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const onSubmit = () => {
@@ -46,8 +50,12 @@ const RegisterModal: React.FC<RegisterModalProps> = () => {
 
     axios
       .post("/api/login", data)
-      .then(() => console.log("SUCCESS"))
-      .catch((e) => console.log(e))
+      .then(() => {
+        toast("SUCCESS");
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      })
       .finally(() => setIsLoading(false));
   };
 
@@ -61,6 +69,16 @@ const RegisterModal: React.FC<RegisterModalProps> = () => {
       onSubmit={onSubmit}
       submitLabel={isLoading ? "LOADING" : "Submit"}
       header={<h1>Register Modal</h1>}
+      footer={
+        <div className={"flex flex-col gap-2"}>
+          <C.Button outlined icon={FcGoogle}>
+            Continue with google
+          </C.Button>
+          <C.Button outlined icon={AiFillGithub}>
+            Continue with GitHub
+          </C.Button>
+        </div>
+      }
     >
       <form ref={formRef} className="flex flex-col gap-3">
         <C.Input

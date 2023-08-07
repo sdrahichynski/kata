@@ -58,9 +58,7 @@ const Modal: React.FC<ModalProps> = ({
 
         {children && <div className="py-2">{children}</div>}
 
-        {footer && <footer className="py-4 pt-2">{footer}</footer>}
-
-        <div className="flex flex-row gap-2 pt-2 items-center">
+        <div className="flex flex-row gap-2 py-2 items-center">
           {handleCancel && (
             <C.Button outlined onClick={handleCancel}>
               {cancelLabel}
@@ -71,6 +69,8 @@ const Modal: React.FC<ModalProps> = ({
             <C.Button onClick={handleSubmit}>{submitLabel}</C.Button>
           )}
         </div>
+
+        {footer && <footer className="py-2 border-t-[1px]">{footer}</footer>}
       </div>
     </div>
   );

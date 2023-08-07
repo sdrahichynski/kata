@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import * as C from "@/components";
+import * as P from "@/providers";
 
 const mainFont = Nunito({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={mainFont.className}>
+        <P.ToasterProvider />
         <C.Navbar />
 
         {children}
